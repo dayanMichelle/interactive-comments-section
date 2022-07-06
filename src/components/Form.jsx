@@ -2,7 +2,8 @@ import styles from '../styles/Form.module.css'
 const Form = ({value}) => {
   return (
     <form>
-        <div>
+      <div className={styles.container_form}>
+         <div>
             <img src='https://thumbs.dreamstime.com/b/happy-person-portrait-smiling-woman-tanned-skin-curly-hair-happy-person-portrait-smiling-young-friendly-woman-197501184.jpg' />
         </div>
         <div>
@@ -11,6 +12,8 @@ const Form = ({value}) => {
         <div>
             <button type='submit'>{value}</button>
         </div>
+      </div>
+       
     </form>
   )
 }

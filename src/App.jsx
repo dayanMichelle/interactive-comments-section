@@ -1,13 +1,19 @@
-import Form from "./components/Form"
 
+import Form from "./components/Form";
+import ListComments from "./components/ListComments";
+import { CommentsProviders } from "./context/commentsProvider";
+import "./hooks/useComments";
+import styles from './styles/App.module.css'
 
 function App() {
-
   return (
-    <div>
-       <Form value='Send' />
-    </div>
-  )
+    <CommentsProviders>
+      <div className={styles.container_app}>
+        <ListComments />
+        <Form value="Send" />
+      </div>
+    </CommentsProviders>
+  );
 }
 
-export default App
+export default App;
