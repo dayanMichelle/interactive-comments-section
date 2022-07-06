@@ -6,7 +6,6 @@ const Comment = ({ comen,reply }) => {
     style={{
       width: `${reply ? '90%': ''}`,
       marginBlock: `${reply ? '20px': ''}`,
-      marginBlock: `${reply ? '20px': ''}`,
     }}
     >
       <div>Counter</div>
