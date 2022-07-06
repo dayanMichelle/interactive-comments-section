@@ -1,10 +1,11 @@
+import Form from "./components/Form"
 
 
 function App() {
 
   return (
     <div>
-   d
+       <Form value='Send' />
     </div>
   )
 }
