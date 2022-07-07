@@ -1,7 +1,11 @@
 import styles from '../styles/Form.module.css'
-const Form = ({value}) => {
+const Form = ({value,reply}) => {
   return (
-    <form>
+    <form
+    style={{
+      width:`${reply ? '85%' : ''}`,
+    }}
+    >
       <div className={styles.container_form}>
          <div>
             <img src='https://thumbs.dreamstime.com/b/happy-person-portrait-smiling-woman-tanned-skin-curly-hair-happy-person-portrait-smiling-young-friendly-woman-197501184.jpg' />

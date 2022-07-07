@@ -6,11 +6,12 @@ form {
     margin-top: 20px;
     padding: 15px;
 }
+
 .container_form {
     width: 300px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     gap: 20px;
     margin: 0 auto;
 }
@@ -22,8 +23,14 @@ form img {
 }
 form textarea {
     height: 50px;
-    width: 300px;
+    width: 200px;
     border-radius: 5px;
+}
+@media  (min-width:500px) {
+    form textarea {
+    
+        width: 300px;
+    }
 }
 form button {
     width: 70px;

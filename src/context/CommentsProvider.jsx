@@ -4,8 +4,9 @@ const CommentsContext = createContext();
 
 const CommentsProviders = ({ children }) => {
   const [comments, setComments] = useState({});
+ 
+
   useEffect(() => {
-    console.log("entre");
     const getComments = async () => {
       try {
         const response = await fetch("./data.json");
