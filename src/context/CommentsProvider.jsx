@@ -27,6 +27,27 @@ const CommentsProviders = ({ children }) => {
     setComments(arrayNewComments);
   };
 
+  const lessPoints = (id) => {
+    const arrayNewComments = comments.map((comment) => {
+      //editar comentario si cumple id
+      if (comment.id === id) return { ...comment, score: comment.score - 1 };
+
+      // editar reply
+      const replies = comment.replies.map((reply) => {
+        // editar reply si cumple id
+        if (reply.id === id)
+          return { ...reply, score: reply.score - 1 };
+
+        // no edita el reply
+        return reply;
+      });
+
+      //return comentario que no cumple id
+      return {...comment, replies};
+    });
+    setComments(arrayNewComments);
+  };
+
   const addComment = (e, message) => {
     const newComment = {
       id: generarId(),
@@ -60,6 +81,7 @@ const CommentsProviders = ({ children }) => {
         addComment,
         user,
         addPoints,
+        lessPoints
       }}
     >
       {children}
