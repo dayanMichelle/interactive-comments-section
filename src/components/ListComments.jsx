@@ -9,9 +9,11 @@ const ListComments = () => {
 
   return (
     <div className={styles.list}>
-      {comments.comments?.map((comen) => (
-        <div className={styles.comment}>
-          <Comment  key={comen.id} comen={comen} />
+      {
+        comments.length > 0 &&
+        comments.map((comen) => (
+        <div className={styles.comment} key={comen.id}>
+          <Comment   comen={comen} />
           {
             comen.replies.length > 0 &&
             

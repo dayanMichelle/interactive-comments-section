@@ -6,11 +6,12 @@
     background-color:  hsl(0, 0%, 100%);
     padding: 10px;
     border-radius: 5px;
+
 }
 .comment_info {
     display: flex;
     flex-direction: column;
-    
+    width: 100%;
 }
 .comment_header {
     display: flex;
@@ -50,4 +51,5 @@
 }
 .comment_message p {
     color:   hsl(211, 10%, 45%);
+
 }

@@ -4,48 +4,46 @@ import styles from "../styles/Comment.module.css";
 import Counter from "./Counter";
 import Form from "./Form";
 const Comment = ({ comen, reply }) => {
-  const [newReply, setNewReply] = useState(false)
+  const [newReply, setNewReply] = useState(false);
 
   const handleNewReply = () => {
-    setNewReply(!newReply)
-  }
+    setNewReply(!newReply);
+  };
 
   return (
-    <div>
- <div
-      className={styles.comment}
-      style={{
-        width: `${reply ? "90%" : ""}`,
-      }}
+    <div
+    style={{width:'-webkit-fill-available'}}
     >
-      <Counter comen={comen} />
-      <div className={styles.comment_info}>
-        <div className={styles.comment_header}>
-          <div>
-            <img src={comen.user.image.png} />
-            <h4>{comen.user.username}</h4>
+      <div
+        className={styles.comment}
+        style={{
+          width: `${reply ? "90%" : ""}`,
+        }}
+      >
+        <Counter comen={comen} />
+        <div className={styles.comment_info}>
+          <div className={styles.comment_header}>
+            <div>
+              <img src={comen.user.image.png} />
+              <h4>{comen.user.username}</h4>
+            </div>
+            <p>{comen.createdAt}</p>
+            <button
+              onClick={() => {
+                handleNewReply();
+              }}
+              className={styles.comment_reply}
+            >
+              <i class="fa-solid fa-reply"></i> reply
+            </button>
           </div>
-          <p>{comen.createdAt}</p>
-          <button 
-          onClick={()=> {
-            handleNewReply()
-          }}
-          className={styles.comment_reply}>
-            <i class="fa-solid fa-reply"></i> reply
-          </button>
-        </div>
-        <div className={styles.comment_message}>
-          <p>{comen.content}</p>
+          <div className={styles.comment_message}>
+            <p>{comen.content}</p>
+          </div>
         </div>
       </div>
+      {newReply && <Form reply={true} value="Send" />}
     </div>
-         {
-          newReply && (
-            <Form  reply={true} value='Send' />
-          )
-         }
-    </div>
-   
   );
 };
 
