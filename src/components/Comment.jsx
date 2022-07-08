@@ -20,7 +20,7 @@ const Comment = ({ comen, reply }) => {
           width: `${reply ? "90%" : ""}`,
         }}
       >
-        <Counter comen={comen} />
+        <Counter reply={true} comen={comen} />
         <div className={styles.comment_info}>
           <div className={styles.comment_header}>
             <div>
