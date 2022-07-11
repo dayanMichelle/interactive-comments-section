@@ -14,15 +14,14 @@ const CommentsProviders = ({ children }) => {
       // editar reply
       const replies = comment.replies.map((reply) => {
         // editar reply si cumple id
-        if (reply.id === id)
-          return { ...reply, score: reply.score + 1 };
+        if (reply.id === id) return { ...reply, score: reply.score + 1 };
 
         // no edita el reply
         return reply;
       });
 
       //return comentario que no cumple id
-      return {...comment, replies};
+      return { ...comment, replies };
     });
     setComments(arrayNewComments);
   };
@@ -35,20 +34,50 @@ const CommentsProviders = ({ children }) => {
       // editar reply
       const replies = comment.replies.map((reply) => {
         // editar reply si cumple id
-        if (reply.id === id)
-          return { ...reply, score: reply.score - 1 };
+        if (reply.id === id) return { ...reply, score: reply.score - 1 };
 
         // no edita el reply
         return reply;
       });
 
       //return comentario que no cumple id
-      return {...comment, replies};
+      return { ...comment, replies };
     });
     setComments(arrayNewComments);
   };
 
-  const addComment = (e, message) => {
+  const createReply = (message, id) => {
+    const newReply = {
+      id: generarId(),
+      content: message,
+      createdAt: Date.now(),
+      score: 0,
+      user: user,
+     }
+
+  
+    const newComments = comments.map( comen => {
+      if(comen.id == id){ 
+        return {
+          ...comen,
+          replies: [...comen.replies,newReply]
+        }
+      }
+      return comen
+    })
+  
+   setComments(newComments);
+  };
+  const addComment = (message, id) => {
+    console.log(id)
+    if(id){
+      createReply(message,id)
+    }else {
+      createComment(message)
+    }
+
+  }
+  const createComment = (message) => {
     const newComment = {
       id: generarId(),
       content: message,
@@ -57,9 +86,19 @@ const CommentsProviders = ({ children }) => {
       user: user,
       replies: [],
     };
-    console.log(newComment);
     setComments([...comments, newComment]);
   };
+
+  const handleDeleted = (id) => {
+    const newComments = comments.filter( com => com.id != id)
+    const newCommentsReplies = newComments.map(comen => {
+      const replies = comen.replies.filter( reply => {
+         return reply.id != id
+      })
+      return {...comen, replies}
+    })
+    setComments(newCommentsReplies)
+  } 
   useEffect(() => {
     const getComments = async () => {
       try {
@@ -81,7 +120,8 @@ const CommentsProviders = ({ children }) => {
         addComment,
         user,
         addPoints,
-        lessPoints
+        lessPoints,
+        handleDeleted
       }}
     >
       {children}

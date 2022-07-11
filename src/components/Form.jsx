@@ -1,22 +1,22 @@
 import { useState } from 'react'
 import { useComments } from '../hooks/useComments'
 import styles from '../styles/Form.module.css'
-const Form = ({value,reply}) => {
+const Form = ({value,reply, id,handleNewReply}) => {
   const { addComment, user } = useComments()
   const [message, setMessage] = useState('')
 
-  console.log(user?.image?.png)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addComment(e,message)
+    addComment(message,id)
     setMessage('')
+    handleNewReply(false)
   }
   return (
     <form
     onSubmit={handleSubmit}
     style={{
-      width:`${reply ? '85%' : ''}`,
+      width:`${id ? '85%' : ''}`,
     }}
     >
       <div className={styles.container_form}>

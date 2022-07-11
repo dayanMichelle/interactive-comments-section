@@ -9,13 +9,12 @@ const ListComments = () => {
     <div className={styles.list}>
       {comments.length > 0 &&
         comments.map((comen) => {
-          console.log(comen.id)
           return (
             <div className={styles.comment} key={comen.id}>
-              <Comment comen={comen} />
+              <Comment id={comen.id} comen={comen} />
               {comen.replies.length > 0 &&
                 comen.replies.map((reply) => (
-                  <Comment key={reply.id} reply={true} comen={reply} />
+                  <Comment id={reply.id} key={reply.id} reply={true} comen={reply} />
                 ))}
             </div>
           );
