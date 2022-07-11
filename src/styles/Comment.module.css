@@ -53,3 +53,25 @@
     color:   hsl(211, 10%, 45%);
 
 }
+
+.btn_delete {
+    color: hsl(358, 79%, 66%);
+    border: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+}
+
+.btn_delete:hover {
+    color: hsl(357, 100%, 86%);
+    cursor: pointer;
+}
+.btn_edit {
+    color:  hsl(238, 40%, 52%) ;
+    border: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+}
+.btn_edit:hover {
+    color: hsl(239, 57%, 85%);
+    cursor: pointer;
+}

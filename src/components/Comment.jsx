@@ -3,10 +3,10 @@ import { useComments } from "../hooks/useComments";
 import styles from "../styles/Comment.module.css";
 import Counter from "./Counter";
 import Form from "./Form";
-const Comment = ({ comen, reply, id }) => {
+const Comment = ({ comen, reply, id, idReply }) => {
   const [newReply, setNewReply] = useState(false);
-  const [edit, setEdit] = useState(false)
-  const {handleDeleted, user} = useComments()
+  const [edit, setEdit] = useState(false);
+  const { handleDeleted, user } = useComments();
 
   const handleNewReply = () => {
     setNewReply(!newReply);
@@ -33,25 +33,37 @@ const Comment = ({ comen, reply, id }) => {
               <h4>{comen.user.username}</h4>
             </div>
             <p>{comen.createdAt}</p>
-            {
-              comen.user.username != user.username ? (
+            {comen.user.username != user.username ? (
+              !reply && (
                 <button
-                onClick={() => {
-                  handleNewReply();
-                }}
-                className={styles.comment_reply}
-              >
-                <i class="fa-solid fa-reply"></i> reply
-              </button>
-              ) : (
-                <div> 
-                  <p onClick={()=>handleDeleted(id)}> <i class="fa-solid fa-trash-can"></i> Delete</p>
-                  
-                  <p onClick={()=> {setEdit(true)}}>  <i class="fa-solid fa-pen"></i> Edit</p>
-                </div>
+                  onClick={() => {
+                    handleNewReply();
+                  }}
+                  className={styles.comment_reply}
+                >
+                  <i class="fa-solid fa-reply"></i> reply
+                </button>
               )
-            }
-           
+            ) : (
+              <div>
+                <button 
+                className={styles.btn_delete}
+                onClick={() => handleDeleted(idReply)}>
+                  {" "}
+                  <i class="fa-solid fa-trash-can"></i> Delete
+                </button>
+
+                <button
+                  className={styles.btn_edit}
+                  onClick={() => {
+                    setEdit(true);
+                  }}
+                >
+                  {" "}
+                  <i class="fa-solid fa-pen"></i> Edit
+                </button>
+              </div>
+            )}
           </div>
           <div className={styles.comment_message}>
             <p>{comen.content}</p>
@@ -66,16 +78,14 @@ const Comment = ({ comen, reply, id }) => {
           value="Send"
         />
       )}
-      {
-        edit && (
-          <Form
+      {edit && (
+        <Form
           id={id}
           handleNewReply={handleNewReply}
           reply={true}
           value="Update"
         />
-        )
-      }
+      )}
     </div>
   );
 };

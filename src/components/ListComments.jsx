@@ -14,7 +14,13 @@ const ListComments = () => {
               <Comment id={comen.id} comen={comen} />
               {comen.replies.length > 0 &&
                 comen.replies.map((reply) => (
-                  <Comment id={reply.id} key={reply.id} reply={true} comen={reply} />
+                  <Comment
+                    id={comen.id}
+                    idReply= {reply.id}
+                    key={reply.id}
+                    reply={true}
+                    comen={reply}
+                  />
                 ))}
             </div>
           );
